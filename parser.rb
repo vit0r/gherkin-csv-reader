@@ -25,8 +25,8 @@ module Cucumber
           skp_indexes = 9
           examples_index = body.index('Examples:') + skp_indexes
           file_name = (body[examples_index, body.length]).strip
-          values = (CSV.read(path + file_name, {:col_sep => '|', headers: true})).to_s.gsub!(',', '|')
-          new_body = document.body.gsub(file_name, values.strip)
+          values = (CSV.read(path + file_name, {:col_sep => '|', headers: true})).to_s.gsub!(',', '|').strip
+          new_body = document.body.gsub(file_name, values)
           return new_body
         end
 
