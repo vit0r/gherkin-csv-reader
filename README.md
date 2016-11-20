@@ -1,23 +1,19 @@
-# cucumber-ruby-parser-csv
+# Cucumber-Ruby-Parser-CSV outline scenaries
     
-    cucumber ruby parser csv for cucumber-core-1.5.0
+    Cucumber-Ruby Parser CSV for cucumber-core-1.5.0
   
-    replace file parser.rb in -> ruby_dir/li/ruby/gems/2.3.0/gems/cucumber-core-1.5.0/lib/cucumber/core/gherkin
+    #replace file parser.rb in -> ruby_dir/li/ruby/gems/2.3.0/gems/cucumber-core-1.5.0/lib/cucumber/core/gherkin
 
     #Feature example:
-      
-      #encoding: utf-8
-      
       Feature: Find Vitor
-
-        Scenario Outline: Vitor when age is 31
+        Scenario Outline: Fulano age is 68
           Given Name <Name>
           Given Age <Age>
+          ...
           Examples:
             cucumber_project_init/feature/data.csv
-          
-       
+                 
      #File data.csv format:
        |Name|Age|
-       |Vitor|31|
-       |Vitor1|32|
+       |Fulano|50|
+       |Fulano1|68|
