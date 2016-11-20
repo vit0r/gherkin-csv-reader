@@ -11,10 +11,10 @@
       Feature: Find Vitor
 
         Scenario Outline: Vitor when age is 31
-          Given <Name>
-          Given <Age>
+          Given Name <Name>
+          Given Age <Age>
           Examples:
-            path_to_file/data.csv
+            cucumber_project_init/feature/data.csv
           
        
      #File data.csv format:
