@@ -12,26 +12,35 @@ module Cucumber
       ParseError = Class.new(StandardError)
 
       class Parser
+        EXT_CSV = '.csv'
         attr_reader :receiver
         private :receiver
+        attr_reader :csv_options
 
         def initialize(receiver)
           @receiver = receiver
+          @csv_options = {
+              :col_sep => '|',
+              headers: true,
+              :unconverted_fields => true,
+              :skip_blanks => true,
+              :encoding => 'utf-8'
+          }
         end
 
         def read_csv_file(document)
           path = Pathname.new(File.absolute_path(document.uri)).dirname
-          body = document.body
-          skp_indexes = 9
-          examples_index = body.index('Examples:') + skp_indexes
-          file_name = (body[examples_index, body.length]).strip
-          values = (CSV.read(path + file_name, {:col_sep => '|', headers: true})).to_s.gsub!(',', '|').strip
-          new_body = document.body.gsub(file_name, values)
-          return new_body
+          file_names = document.body.scan(/\w+.csv/)
+          body = document.body.to_s
+          file_names.each do |name|
+            values = (CSV.read(path + name, @csv_options)).to_s.strip.gsub!(',', '|')
+            body = body.gsub(name, values)
+          end
+          return body
         end
 
         def document(document)
-          if document.body.include? '.csv'
+          if document.body.include? Parser::EXT_CSV
             body = read_csv_file(document)
           else
             body = document.body
