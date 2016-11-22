@@ -18,7 +18,7 @@
 			Then I should have <left> eating
 
 			Examples:
-			  data1.csv
+			  ./dir/data1.csv
 					 
      #File data.csv or data1.csv format:
        | start | eat | left |

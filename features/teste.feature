@@ -14,4 +14,4 @@ Feature: Eather
     Then I should have <left> eating
 
     Examples:
-      data1.csv
+      ./dir/data1.csv
