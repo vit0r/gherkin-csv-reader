@@ -30,7 +30,7 @@ module Cucumber
 
         def read_csv_file(document)
           path = Pathname.new(File.absolute_path(document.uri)).dirname
-          file_names = document.body.scan(/\w+.csv/)
+          file_names = document.body.scan(/\S.+.csv/)
           body = document.body.to_s
           file_names.each do |name|
             values = (CSV.read(path + name, @csv_options)).to_s.strip.gsub!(',', '|')
