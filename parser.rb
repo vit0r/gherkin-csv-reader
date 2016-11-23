@@ -33,7 +33,7 @@ module Cucumber
           file_names = document.body.scan(/\S.+.csv/)
           body = document.body.to_s
           file_names.each do |name|
-            values = (CSV.read(path + name, @csv_options)).to_s.strip.gsub!(',', '|')
+            values = CSV.read(path + name, @csv_options).to_csv(@csv_options)
             body = body.gsub(name, values)
           end
           return body
